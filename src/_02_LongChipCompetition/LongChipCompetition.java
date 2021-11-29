@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LongChipCompetition {
+	static int longestChip;
     /*
      * The Beatles are eating lunch and playing a game to see who has the
      * longest chip. (In England, french fries are called "chips".)
@@ -15,10 +16,21 @@ public class LongChipCompetition {
 
     public static void main(String[] args) {
         LongChipCompetition lcc = new LongChipCompetition();
-
+        lcc.initializeBeatles();
+        longestChip = 0;
+        for(int i = 0; i < lcc.theBeatles.size(); i++){
+            Beatle b = lcc.theBeatles.get(i);
+            lcc.theBeatles.get(i).getChips();
+            
+         //  for(int j = 0; j < Beatle.chips("George"); j++) {
+        	   
+          // }
+          //  if(()>longestChip) {
+            	
+          //  }
+        }
     }
-
-    private void initializeBeatles() {
+private void initializeBeatles() {
         Beatle george = new Beatle("George");
         Beatle john = new Beatle("John");
         Beatle paul = new Beatle("Paul");
