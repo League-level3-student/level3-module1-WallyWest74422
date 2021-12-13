@@ -18,6 +18,7 @@ public class LongChipCompetition {
         LongChipCompetition lcc = new LongChipCompetition();
         lcc.initializeBeatles();
        double longestChip = 0;
+       String winner = null;
         for(int i = 0; i < lcc.theBeatles.size(); i++){
         	   
             Beatle b = lcc.theBeatles.get(i);
@@ -26,19 +27,16 @@ public class LongChipCompetition {
         double length =	 chips.get(j).getLength();
         if(length>longestChip) {
         	longestChip = length;
-        
+        	winner = b.getName();
         }
-        if(i==1) {
-        	System.out.println("George");
-        }else if(i == 2) {
-        	System.out.println("John");
-        }else if(i==3) {
-        	System.out.println("Paul");
-        }
+
+
+
          }
         }
         
         System.out.println(longestChip);
+        System.out.println(winner);
     }
 private void initializeBeatles() {
         Beatle george = new Beatle("George");

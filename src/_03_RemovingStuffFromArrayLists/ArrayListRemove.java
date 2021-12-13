@@ -23,14 +23,24 @@ public class ArrayListRemove {
     // 1. Write a method that removes the dirt in the yard and returns the
     //    ArrayList
     public static ArrayList<Stuff> cleanOutTheYard( ArrayList<Stuff> yard ) {
-        
+    	 for(int i = 0; i < yard.size(); i++){
+    		 if(yard.get(i).type.equals("dirt")) {
+    			yard.remove(i);
+    			i--;
+    		 }
+    	 }
         return yard;
     }
     
     // 2. Write a method that removes the hash tag ('#') characters from the
     //    ArrayList and returns it
     public static ArrayList<Character> removeHashTags(ArrayList<Character> list) {
-
+    	 for(int j = 0; j < list.size(); j++){
+    		 if(list.get(j).equals("#")) {
+    			 list.remove(j);
+    			 j--;
+    		 }
+    	 }
         return list;
     }
 }
