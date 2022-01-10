@@ -16,17 +16,20 @@ color[] sunColors = {
 
 void setup() {
   // 1. Set the size of your sketch
-  
+  size(600,400);
 }
 
 
 void draw() {
   // 2. Draw the bgColor background color
-
+background(bgColor);
   /*
    * PART 1: Drawing the sun
    */
+   fill(sunColors[0]);
+ellipse(300,175,300,300);
 
+noStroke();
   // Draw an ellipse for the sun in the center of the window
   // Use fill(sunColors[0]) to make it yellow
   // Use noStroke() to remove the black outline
@@ -44,10 +47,22 @@ void draw() {
   // Call the loadPixels() method to put all the pixel colors into
   // the pixels[] array
   // https://processing.org/reference/loadPixels_.html
-
+loadPixels();
   // Loop through all the pixels in your window.
   // By default, a pixel is a 1x1 colored square, so if the window width is 600 
   // and the height is 400 (600x400), then there are 600 * 400 = 240,000 pixels 
+  for(int i = 0; i<pixels.length;i++){
+    if(pixels[i]==sunColors[0]){
+      int y = i / width;
+float step = map(y, 25, 325, 0, 1);
+ color colorSafe = interpolateColor(sunColors, step);
+ pixels[i] = colorSafe;
+    }
+
+  }
+    updatePixels();
+    
+    
 
     // We want to change the color of our sun so use an if statement
     // to check if the pixel is the color of the yellow circle. 
@@ -82,16 +97,17 @@ void draw() {
    */
 
   // Set the fill color to the background color
-
+ fill(bgColor);
   // To draw each rectangle we need to find its x, y, width, height
   // *The y position can be any value within the sun:
-  //   float y = width / 2;
+  float y = (width / 2.7);
   // *The height can be any value you choose:
-  //   float h = 40;
+     float h = 15;
   // *The x position can be the center of the sun's x position minus the radius:
-  //   float x = sunCenterX - sunRadius
+     float x = 300 - 150;
   // * The width can be 2 times the radius
-  //   float w = 2 * sunRadius
+     float w = 2 * 150;
+rect(x,y,w,h);
 
   // Do you see a section missing from the sun like in the 3rd image?
 
@@ -106,7 +122,9 @@ void draw() {
   // Decrease the y variable of the rectangular section created in PART 3.
   // If there isn't a variable, declare a float variable OUTSIDE of the
   // draw function AND initialize it in the setup() function.
-
+y--;
+  y--;
+  y--;
   // Do you see the rectangle moving upwards?
 
   // Pick a y positon to be the location when the sections stop moving up.
@@ -144,10 +162,11 @@ void draw() {
    * See the Retro Sun webpage on the League level 3 website
    * for example code and classes.
    */
-}
+//}
 
 // Placed here so it can be used by all classes
 // Variable step should be between 0 and 1, inclusive
+}
 color interpolateColor(color[] arr, float step) {
   int sz = arr.length;
 
