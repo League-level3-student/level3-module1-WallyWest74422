@@ -1,3 +1,4 @@
+ ArrayList<Rectangle> sections = new ArrayList<Rectangle>();
 color bgColor = color(31, 0, 48);
 
 // RGB colors
@@ -13,8 +14,30 @@ color[] sunColors = {
   color(217, 11, 139), 
   color(217, 0, 151)
 };
-
+float y;
+float h;
+float x;
+float w;
+float y2;
+//float h2;
+float y3;
+//float h3;
 void setup() {
+y=(width/2);
+h=25;
+x = 300 - 150;
+w = 2 * 150;
+Rectangle r1 = new Rectangle(x,y,w,h);
+
+sections.add(r1);
+y2=(width/3);
+Rectangle r2 = new Rectangle(x,y2,w,h);
+sections.add(r2);
+///h2=20;
+y3 =(width/4);
+Rectangle r3 = new Rectangle(x,y3,w,h);
+sections.add(r3);
+//h3 = 30;
   // 1. Set the size of your sketch
   size(600,400);
 }
@@ -97,18 +120,22 @@ float step = map(y, 25, 325, 0, 1);
    */
 
   // Set the fill color to the background color
- fill(bgColor);
+for(int i = 0; i<sections.size();i++){
+  sections.get(i).draw();
+  sections.get(i).update();
+}
   // To draw each rectangle we need to find its x, y, width, height
   // *The y position can be any value within the sun:
-  float y = (width / 2.7);
+ // float y = (width / 2);
   // *The height can be any value you choose:
-     float h = 15;
+   //  float h = 20;
   // *The x position can be the center of the sun's x position minus the radius:
-     float x = 300 - 150;
+    // float x = 300 - 150;
   // * The width can be 2 times the radius
-     float w = 2 * 150;
-rect(x,y,w,h);
+    // float w = 2 * 150;
 
+//rect(x,y2,w,h2);
+//rect(x,y3,w,h3);
   // Do you see a section missing from the sun like in the 3rd image?
 
 
@@ -122,25 +149,40 @@ rect(x,y,w,h);
   // Decrease the y variable of the rectangular section created in PART 3.
   // If there isn't a variable, declare a float variable OUTSIDE of the
   // draw function AND initialize it in the setup() function.
-y--;
-  y--;
-  y--;
+
+//y2--;
+////y3--;
   // Do you see the rectangle moving upwards?
 
   // Pick a y positon to be the location when the sections stop moving up.
   // If the rectangle's y positon is above this, move the rectangle's
   // y position back to the bottom of the sun.
 
+//if(y2<50){
+//  y2=300;
+//}
+//if(y3<20){
+//  y3=270;
+//}
   // Does the rectangle move back to the bottom?
 
   // Decrease the the height of the rectangle as it moves upwards.
   // Similar to the y positon, a float variable for the height needs to be
   // created if it doesn't already exist.
 
+//h2=h2-0.08;
+//h3=h3-0.06;
   // Adjust the amount to decrease so that it disappears close to the top.
 
   // Add code to reset the height of the rectangle when it moves back to
   // the bottom of the sun.
+
+//  if(y2==300){
+///    h2=20;
+//  }
+//  if(y3==315){
+//    h3=15;
+//  }
 
   /*
    * PART 5: Managing the missing sun sections
@@ -152,6 +194,8 @@ y--;
   // code you wrote for the 1 missing sun section.
   // *HINT* You can use the Rectangle class defined below to create
   //        a list of Rectangles.
+
+
 
 
   /*
@@ -193,5 +237,19 @@ class Rectangle {
     this.y = y;
     this.w = w;
     this.h = h;
+  }
+  void draw(){
+    fill(bgColor);
+    rect(x,y,w,h);
+  }
+  void update(){
+   y--;
+   if(y<80){
+  y=330;
+}
+h=h-0.1;
+  if(y==330){
+    h=25;
+  }
   }
 }
