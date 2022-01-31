@@ -1,5 +1,6 @@
 package _07_Meeting_Scheduler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MeetingScheduler {
@@ -24,14 +25,20 @@ public class MeetingScheduler {
      * Assume both schedules are in the same time zones
      */
     public static Schedule getMutualAvailability(Schedule person1, Schedule person2) {
-        HashMap<String, Integer> Schedule = new HashMap<String, Integer>();
-    	for (int i = 0; i < person1.getSchedule().size(); i++) {
-    		for (int j = 0; j < person2.getSchedule().size(); j++) {
-				if(person1.getSchedule().get(i).equals(person2.getSchedule().get(j))) {
-					//Schedule.put(person2.getSchedule().get(j));
+    	Schedule s = new Schedule();
+    	HashMap<String, ArrayList<Integer>> person1Availability = person1.getSchedule();
+    	HashMap<String, ArrayList<Integer>> person2Availability = person2.getSchedule();
+    	 for(String Day : person1Availability.keySet()){
+           ArrayList<Integer> person1Times =  person1Availability.get(Day);
+           ArrayList<Integer> person2Times =  person2Availability.get(Day);
+           for (int i = 0; i < person1Times.size(); i++) {
+			for (int j = 0; j < person2Times.size(); j++) {
+				if(person1Times.get(i)==person2Times.get(j)) {
+					s.addAvailability(Day, person1Times.get(i));
 				}
 			}
-    	}
-        return null;
+		}
+         }
+        return s;
     }
 }
