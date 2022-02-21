@@ -8,4 +8,6 @@ public class WeatherData {
         this.weatherSummary = summary;
         this.temperatureF = temperatureF;
     }
+
+
 }
